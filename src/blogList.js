@@ -25,7 +25,6 @@ class BlogList extends Component {
 
   render() {
     const blogs = this.fetchData();
-    blogs.map(blog => console.log(blog))
     return (
       <Layout>
         <Content>
