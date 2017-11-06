@@ -15,6 +15,7 @@ class App extends Component {
         <div className="App-intro">
           <CreateBlog></CreateBlog>
           <BlogList></BlogList>
+          <a href="#" onClick={ () => console.log('23333')}>23333</a>
         </div>
       </div>
     );
