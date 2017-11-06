@@ -17,6 +17,16 @@ if (argv && argv.toLocaleLowerCase().indexOf('test') > -1) {
   _config = config.test;
   _config.SASUKEKUN_CONFIG.staticPrefix='';
 }
+
+const postcss_rule = {
+  'loader': 'postcss-loader',
+  'options': {
+    'plugins': [
+      autoprefixer({}),
+    ]
+  }
+};
+
 const rules = [
   {
     test: /\.jsx?$/,
@@ -24,29 +34,17 @@ const rules = [
     loader: 'babel-loader',
     query: {
       presets: ['react', 'es2015', 'stage-0', 'react-hmre'],
-      plugins: [],
+      plugins: [["import", { libraryName: "antd", style: true }]],
       cacheDirectory: '.webpack_cache'
     }
   },
   {
     test: /\.css$/,
-    use: [ 'style-loader', 'css-loader',
-           {
-             loader: 'postcss-loader',
-           }
-         ]
+    use: [ 'style-loader', 'css-loader', postcss_rule]
   },
   {
     test: /\.less$/,
-    use: [{
-      loader: "style-loader" // creates style nodes from JS strings
-    }, {
-      loader: "css-loader" // translates CSS into CommonJS
-    }, {
-      loader: "less-loader" // compiles Less to CSS
-    },{
-      loader: 'postcss-loader',
-    }]
+    use: ["style-loader", "css-loader", postcss_rule, "less-loader"]
   },
   {
     test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
@@ -108,6 +106,7 @@ const webpackConfig = {
       },
       'SASUKEKUN_CONFIG': JSON.stringify(_config.SASUKEKUN_CONFIG)
     }),
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
   ]
