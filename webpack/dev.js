@@ -24,32 +24,29 @@ const rules = [
     loader: 'babel-loader',
     query: {
       presets: ['react', 'es2015', 'stage-0', 'react-hmre'],
-      plugins: [['import', {style: 'true', libraryName: 'antd'}]],
+      plugins: [],
       cacheDirectory: '.webpack_cache'
     }
   },
   {
-    test: /\.json$/,
-    exclude: /node_modules/,
-    use: [
-      {
-        loader: 'json'
-      }
-    ]
+    test: /\.css$/,
+    use: [ 'style-loader', 'css-loader',
+           {
+             loader: 'postcss-loader',
+           }
+         ]
   },
   {
-    test: /\.css$/,
-    use: ['style-loader', 'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              // TODO: Solution path problem
-              //              config: {
-              //      path: path.join(__dirname, './postcss.config.js')
-              //             }
-            }
-          }
-         ]
+    test: /\.less$/,
+    use: [{
+      loader: "style-loader" // creates style nodes from JS strings
+    }, {
+      loader: "css-loader" // translates CSS into CommonJS
+    }, {
+      loader: "less-loader" // compiles Less to CSS
+    },{
+      loader: 'postcss-loader',
+    }]
   },
   {
     test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
@@ -95,12 +92,6 @@ const webpackConfig = {
     rules
   },
 
-  // The list of plugins for PostCSS
-  // https://github.com/postcss/postcss
-  //  postcss: [
-  //  autoprefixer()
-  //  ],
-
   // The list of plugins for Webpack compiler
   plugins: [
     new HtmlWebpackPlugin({
@@ -117,7 +108,6 @@ const webpackConfig = {
       },
       'SASUKEKUN_CONFIG': JSON.stringify(_config.SASUKEKUN_CONFIG)
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
   ]
