@@ -1,5 +1,4 @@
 import superagent from 'superagent';
-import configs from '../configs';
 
 const GET = 'get';
 const POST = 'post';
@@ -36,7 +35,7 @@ class ApiClient {
         if (method === GET) {
           query = {
             ...params,
-            t: new Date().getTime();
+            t: new Date().getTime()
           }
         }
 
