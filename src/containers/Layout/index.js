@@ -5,6 +5,7 @@ import { withRouter, Route, Link, Switch } from 'react-router-dom';
 import className from 'classnames';
 import * as homeActions from '../../actions/home';
 import Home from '../Home';
+import CreateBlog from '../Blog/createBlog';
 import './layout.less';
 
 
@@ -53,6 +54,7 @@ class Layout extends Component {
         <p>main</p>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/blog/create" component={CreateBlog} />
           <Route path="/t2" component={T2} />
           <Route path="/t3" component={T3} />
         </Switch>
