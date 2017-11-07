@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
-import './app.less';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import Layout from '../Layout';
+import Home from '../Home';
 
 
-class App extends Component {
+import App3 from '../../App';
+
+class App extends React.Component {
   render() {
     return (
-      <div id="app">
-        {this.props.children}
-      </div>
+      <Layout>
+        <Route path="/" component={Home} />
+        <Route path="/app" component={App3} />
+      </Layout>
     );
   }
 }

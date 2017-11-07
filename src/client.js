@@ -1,28 +1,23 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, browserHistory } from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory'
 import { Provider } from 'react-redux';
-import { useBasename } from 'history';
-import createRoutes from './routes';
+import { App } from './containers';
 import configureStore from './store/configure-store';
 import rootSaga from './sagas/index';
 
 const store = configureStore();
 store.runSaga(rootSaga);
 
-const routes = createRoutes(store);
-let history = browserHistory;
-console.log(browserHistory)
-if (process.env.NODE_ENV !== 'development') {
-  history = useBasename(() => browserHistory)({
-    basename: '/'
-  });
-}
+const history = createBrowserHistory()
 
 ReactDOM.render(
   <Provider store={store} key="provider">
-    <Router routes={routes} history={history} />
+    <Router basename="/" >
+      <App />
+    </Router>
   </Provider>,
   document.getElementById('main')
 )
