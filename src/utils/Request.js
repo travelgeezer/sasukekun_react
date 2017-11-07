@@ -1,18 +1,12 @@
 import superagent from 'superagent';
+import configs from '../configs';
+import Storage from '../utils/Storage';
 import { formatUrl } from '../utils';
 
-const GET = 'get';
-const POST = 'post';
-const PUT = 'put';
-const PATCH = 'patch';
-const DEL = 'del';
-const TIMEOUT = 30000;
-
-const methods = [GET, POST, PUT, PATCH, DEL];
-
-const RESUTL_CODE = {
+const methods = ['get', 'post', 'put', 'patch', 'del', 'options'];
+const RESULT_CODE = {
   SUCCESS: 0,
-  UNANTUORIZED: 9999
+  UNAUTHORIZED: 5004
 };
 
 class ApiClient {
@@ -23,71 +17,78 @@ class ApiClient {
         {
           params,
           data,
-          fromEncoding,
-          fromJson,
+          formEncoding,
+          formJson,
           auth,
           sign,
-          handelError
+          handleError
         } = {}
-      ) => new promise((resolve, reject) => {
+      ) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
+        console.log(request);
+        console.log('request: ----')
+        console.log('method: ' + method)
         let query = params;
-
-        if (method === GET) {
+        if (method === 'get') {
           query = {
             ...params,
             t: new Date().getTime()
-          }
+          };
         }
-
         if (query) {
           request.query(query);
         }
 
-        request.timeout(TIMEOUT);
+        request.timeout(30000);
 
         if (data) {
-          // MVP sign not need???
+          // 当前MVP sign不需要
           if (sign && !data.sign) {
             data.sign = '123';
           }
-
           request.send(data);
         }
-
         if (formEncoding) {
           request.set('Content-Type', 'application/x-www-form-urlencoded');
         }
+
 
         if (formJson) {
           request.set('Content-Type', 'application/json');
           request.set('Accept', 'application/json');
         }
 
+        if (auth) {
+          const user = Storage.get(configs.authToken);
+          if (user) {
+            request.set('Authorization', user.token);
+          } else {
+            reject(new Error('token不存在或已过期'));
+          }
+        }
         request.end((err, { body } = {}) => {
           if (err) {
             if (
               typeof err.status === 'undefined' &&
-                err.message.indexOf('Request has been terminated') > -1
+              err.message.indexOf('Request has been terminated') > -1
             ) {
-              reject(new Error('Network error'));
+              reject(new Error('网络不给力,请刷新页面'));
             }
-
             if (err.timeout) {
-              reject(new Error('Request timeout'));
+              reject(new Error('请求超时,请刷新页面'));
             } else {
               reject(body || err);
             }
           } else {
             if (sign) {
-              body.json = JSON.parase(body.json);
+              body.json = JSON.parse(body.json);
             }
             const res = sign ? body.json : body;
-            if (res.code === RESUTL_CODE.SUCCESS) {
+            if (res.code === RESULT_CODE.SUCCESS) {
               resolve(res.data);
-            } else if (res.code === RESUTL_CODE.UNANTUORIZED) {
+            } else if (res.code === RESULT_CODE.UNAUTHORIZED) {
               window.location.href = '/login';
-            } else if (handelError) {
+            } else if (handleError) {
               reject(res.data);
             } else {
               reject(new Error(res.info));
@@ -96,5 +97,9 @@ class ApiClient {
         });
       })
     );
+
+    console.log(this);
   }
 }
+
+export default ApiClient;
