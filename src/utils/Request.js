@@ -1,4 +1,5 @@
 import superagent from 'superagent';
+import { formatUrl } from '../utils';
 
 const GET = 'get';
 const POST = 'post';
@@ -29,7 +30,7 @@ class ApiClient {
           handelError
         } = {}
       ) => new promise((resolve, reject) => {
-        const request = superagent[method](path);
+        const request = superagent[method](formatUrl(path));
         let query = params;
 
         if (method === GET) {
