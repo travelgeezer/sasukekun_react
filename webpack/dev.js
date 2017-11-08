@@ -34,7 +34,7 @@ const rules = [
     loader: 'babel-loader',
     query: {
       presets: ['react', 'es2015', 'stage-0', 'react-hmre'],
-      plugins: [["import", { libraryName: "antd", style: true }]],
+      plugins: [],
       cacheDirectory: '.webpack_cache'
     }
   },
