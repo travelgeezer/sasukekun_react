@@ -8,6 +8,10 @@ import configureStore from './store/configure-store';
 import rootSaga from './sagas/index';
 import Storage from './utils/Storage';
 import configs from './configs';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import Main from './Main';
+
+injectTapEventPlugin();
 
 const store = configureStore();
 store.runSaga(rootSaga);
@@ -17,7 +21,7 @@ Storage.setNamespace(configs.storageNameSpace);
 ReactDOM.render(
   <Provider store={store} key="provider">
     <Router basename="/" >
-      <App />
+      <Main />
     </Router>
   </Provider>,
   document.getElementById('main')
