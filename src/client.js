@@ -9,7 +9,7 @@ import rootSaga from './sagas/index';
 import Storage from './utils/Storage';
 import configs from './configs';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Main from './Main';
+import Main from './main';
 
 injectTapEventPlugin();
 
