@@ -1,13 +1,14 @@
 import { put, take, call, fork } from 'redux-saga/effects';
 import { types } from '../actions/blog';
 import Api from '../utils/Request';
+import Message from '../utils/Message';
 
 function* createBlog(payload = {}) {
   const { data } = payload;
 
   try {
     console.log(new Api())
-    const blog = yield call(new Api().post, '/test1', {
+    const blog = yield call(new Api().post, '/posts/', {
       formJson: true,
       data
     });
@@ -17,7 +18,7 @@ function* createBlog(payload = {}) {
     });
     return blog;
   }catch (error) {
-    console.log(error)
+    Message.error(error);
     yield put({type: types.CREATE_BLOG_FAIL});
   }
 }
@@ -25,8 +26,6 @@ function* createBlog(payload = {}) {
 export function* watchCreateBlog() {
   while (true) {
     const { payload } = yield take(types.CREATE_BLOG);
-    console.log('watchCreateblog: ')
-    console.log(payload);
     yield fork(createBlog, payload);
   }
 }
@@ -34,13 +33,14 @@ export function* watchCreateBlog() {
 function* getBlogList(payload) {
   const {}  = payload;
   try {
-    const blogList = yield call(new Api().get, '/posts');
+    const blogList = yield call(new Api().get, '/posts/');
     yield put({
       type: types.GET_BLOG_LIST_SUCCESS,
       payload: blogList
     });
     return blogList;
   } catch (error) {
+    Message.error(error);
     yield put({type: types.GET_BLOG_LIST_FAIL});
   }
 }
