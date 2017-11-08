@@ -6,6 +6,8 @@ import className from 'classnames';
 import * as homeActions from '../../actions/home';
 import Home from '../Home';
 import CreateBlog from '../Blog/createBlog';
+import Toolbar from '../../components/toolbar';
+import Footer from '../../components/footer';
 import './layout.less';
 
 
@@ -50,15 +52,14 @@ class Layout extends Component {
   render() {
     return (
       <div className="layout">
-        <p>head</p>
-        <p>main</p>
+        <Toolbar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/blog/create" component={CreateBlog} />
           <Route path="/t2" component={T2} />
           <Route path="/t3" component={T3} />
         </Switch>
-        <p>footer</p>
+        <Footer />
       </div>
     );
   }
