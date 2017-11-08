@@ -14,7 +14,6 @@ class CreateBlog extends Component {
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
     return (
       <div>
         <h1>create blog.</h1>
