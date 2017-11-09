@@ -8,7 +8,8 @@ import FlatButton from 'material-ui/FlatButton';
 const styles = {
   container: {
     textAlign: 'center',
-    paddingTop: 200,
+    paddingTop: 210,
+    paddingBottom: 210
   },
 };
 
