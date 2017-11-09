@@ -33,7 +33,7 @@ const rules = [
     exclude: /node_modules/,
     loader: 'babel-loader',
     query: {
-      presets: ['react', 'es2015', 'stage-0', 'react-hmre'],
+      presets: ['react', 'es2015', 'stage-1', 'react-hmre'],
       plugins: [],
       cacheDirectory: '.webpack_cache'
     }
