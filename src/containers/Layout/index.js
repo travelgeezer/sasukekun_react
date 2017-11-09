@@ -15,6 +15,12 @@ class T24 extends Component {
   render = () => (<div><p>t22222</p></div>);
 }
 
+class T extends Component {
+  constructor(porps) {
+    super(props);
+    this.state = {}
+  }
+}
 
 class T2 extends Component {
   render() {
@@ -53,12 +59,14 @@ class Layout extends Component {
     return (
       <div className="layout">
         <Toolbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/blog/create" component={CreateBlog} />
-          <Route path="/t2" component={T2} />
-          <Route path="/t3" component={T3} />
-        </Switch>
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/blog/create" component={CreateBlog} />
+            <Route path="/t2" component={T2} />
+            <Route path="/t3" component={T3} />
+          </Switch>
+        </div>
         <Footer />
       </div>
     );
