@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Layout from '../Layout';
 import Home from '../Home';
-
+import './app.less';
 
 class EmptyView extends Component {
   render = () => <div><p>empty view</p></div>;
