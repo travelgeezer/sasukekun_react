@@ -9,6 +9,8 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import { greenA700, redA400 } from 'material-ui/styles/colors';
+import Menu from './menu';
+
 
 export default class ToolbarExamplesSimple extends React.Component {
 
@@ -29,15 +31,11 @@ export default class ToolbarExamplesSimple extends React.Component {
   render() {
     return (
       <div>
-        <Drawer
-          docked={false}
-          width={200}
+        <Menu
           open={this.state.open}
-          onRequestChange={(open) => this.setState({open})}
-          >
-          <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
-          <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
-        </Drawer>
+          onRequestChange={open => this.setState({open})}
+          handleClose={this.handleClose.bind(this)}
+          />
         <Toolbar>
           <ToolbarGroup firstChild={true}>
             <FontIcon className="material-icons" onClick={this.handleToggle}>menu</FontIcon>
