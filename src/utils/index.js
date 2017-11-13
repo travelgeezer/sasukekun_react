@@ -12,3 +12,7 @@ export function formatUrl(path) {
     ? `/${path}`
     : path}`;
 }
+
+export function formatLocalImageUrl(path) {
+  return `${configs.staticPrefix}/img/${path}`;
+}
