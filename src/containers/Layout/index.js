@@ -1,26 +1,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { withRouter, Route, Link, Switch } from 'react-router-dom';
-import className from 'classnames';
+import { withRouter, Route, Switch } from 'react-router-dom';
 import * as homeActions from '../../actions/home';
 import Home from '../Home';
 import CreateBlog from '../Blog/createBlog';
-import Toolbar from '../../components/toolbar';
-import Footer from '../../components/footer';
+import { Toolbar, Footer } from '../../components';
 import './layout.less';
 
-
-class T24 extends Component {
-  render = () => (<div><p>t22222</p></div>);
-}
-
-class T extends Component {
-  constructor(porps) {
-    super(props);
-    this.state = {}
-  }
-}
 
 class T2 extends Component {
   render() {
