@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
+import { Drawer, MenuItem, FontIcon } from 'material-ui';
 import { Link } from 'react-router-dom';
 
 class Menu extends Component {
@@ -21,6 +20,15 @@ class Menu extends Component {
     }
   }
 
+  renderHomeIcon() {
+    return <FontIcon className="material-icons" >home</FontIcon>;
+  }
+
+  renderUploadIcon() {
+    return <FontIcon className="material-icons">cloud_upload</FontIcon>
+
+  }
+
   render() {
     return (
       <Drawer
@@ -29,12 +37,20 @@ class Menu extends Component {
         open={this.props.open}
         onRequestChange={this.onRequestChange.bind(this)}
         >
-        <MenuItem onClick={this.handleClose.bind(this)}>
-          <Link to="/">home</Link>
-        </MenuItem>
-        <MenuItem onClick={this.handleClose.bind(this)}>
-          <Link to="/t2">t2</Link>
-        </MenuItem>
+        <Link to="/">
+          <MenuItem
+            primaryText="Home"
+            onClick={this.handleClose.bind(this)}
+            leftIcon={this.renderHomeIcon()}
+            />
+        </Link>
+        <Link to="/upload">
+          <MenuItem
+            primaryText="Upload"
+            onClick={this.handleClose.bind(this)}
+            leftIcon={this.renderUploadIcon()}
+            />
+        </Link>
       </Drawer>
     );
   }
