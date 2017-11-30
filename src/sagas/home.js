@@ -3,13 +3,12 @@ import { types } from '../actions/home';
 import Request from '../utils/Request';
 
 function* getHomeInfo(payload = {}) {
-  const {} = payload;
   try {
     const homeInfo = yield call(new Request().get, '/home');
     yield put({
       type: types.GET_HOME_INFO_SUCCESS,
       payload: {
-        ...homeInfo,
+        ...homeInfo
       }
     });
     return homeInfo;

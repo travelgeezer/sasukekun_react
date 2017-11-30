@@ -4,14 +4,12 @@ import { bindActionCreators } from 'redux';
 import * as blogActions from '../../actions/blog';
 
 class CreateBlog extends Component {
-
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  onCreateBlog() {
-  }
+  onCreateBlog() {}
 
   render() {
     return (
@@ -21,7 +19,6 @@ class CreateBlog extends Component {
     );
   }
 }
-
 
 function mapStateToProps(state) {
   return {
@@ -34,7 +31,5 @@ function mapDispatchToProps(dispatch) {
     blogActions: bindActionCreators(blogActions, dispatch)
   };
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateBlog);

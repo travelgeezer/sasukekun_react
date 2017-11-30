@@ -12,8 +12,6 @@
     "jss": "^9.2.0",
     "jss-preset-default": "^4.0.1",
     "lodash": "^4.17.4",
-    "material-design-icons": "^3.0.1",
-    "material-ui": "^0.19.4",
     "moment": "^2.19.1",
     "precss": "^2.0.0",
     "prop-types": "^15.6.0",

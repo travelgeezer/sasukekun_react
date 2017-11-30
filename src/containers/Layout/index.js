@@ -9,10 +9,7 @@ import { FileUpload } from '../upload';
 import { Toolbar, Footer } from '../../components';
 import './layout.less';
 
-
-
 class Layout extends Component {
-
   onLogout() {}
 
   onGoHome() {
@@ -43,13 +40,13 @@ class Layout extends Component {
 function mapStateToProps(state) {
   return {
     home: state.home
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     homeActions: bindActionCreators(homeActions, dispatch)
-  }
+  };
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));

@@ -7,7 +7,7 @@ function* createBlog(payload = {}) {
   const { data } = payload;
 
   try {
-    console.log(new Api())
+    console.log(new Api());
     const blog = yield call(new Api().post, '/posts/', {
       formJson: true,
       data
@@ -17,9 +17,9 @@ function* createBlog(payload = {}) {
       payload: blog
     });
     return blog;
-  }catch (error) {
+  } catch (error) {
     Message.error(error);
-    yield put({type: types.CREATE_BLOG_FAIL});
+    yield put({ type: types.CREATE_BLOG_FAIL });
   }
 }
 
@@ -31,7 +31,6 @@ export function* watchCreateBlog() {
 }
 
 function* getBlogList(payload) {
-  const {}  = payload;
   try {
     const blogList = yield call(new Api().get, '/posts/');
     yield put({
@@ -41,7 +40,7 @@ function* getBlogList(payload) {
     return blogList;
   } catch (error) {
     Message.error(error);
-    yield put({type: types.GET_BLOG_LIST_FAIL});
+    yield put({ type: types.GET_BLOG_LIST_FAIL });
   }
 }
 

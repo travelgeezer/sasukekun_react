@@ -12,18 +12,16 @@ const env = {
 };
 
 var _config = config.dev;
-const argv = process.argv.slice(2).length > 0 ? process.argv.slice(2)[0]:'';
+const argv = process.argv.slice(2).length > 0 ? process.argv.slice(2)[0] : '';
 if (argv && argv.toLocaleLowerCase().indexOf('test') > -1) {
   _config = config.test;
-  _config.SASUKEKUN_CONFIG.staticPrefix='';
+  _config.SASUKEKUN_CONFIG.staticPrefix = '';
 }
 
 const postcss_rule = {
-  'loader': 'postcss-loader',
-  'options': {
-    'plugins': [
-      autoprefixer({}),
-    ]
+  loader: 'postcss-loader',
+  options: {
+    plugins: [autoprefixer({})]
   }
 };
 
@@ -33,18 +31,18 @@ const rules = [
     exclude: /node_modules/,
     loader: 'babel-loader',
     query: {
-      presets: ['react', 'es2015', 'stage-1', 'react-hmre'],
+      presets: ['react', 'es2015', 'stage-0', 'react-hmre'],
       plugins: [],
       cacheDirectory: '.webpack_cache'
     }
   },
   {
     test: /\.css$/,
-    use: [ 'style-loader', 'css-loader', postcss_rule]
+    use: ['style-loader', 'css-loader', postcss_rule]
   },
   {
     test: /\.less$/,
-    use: ["style-loader", "css-loader", postcss_rule, "less-loader"]
+    use: ['style-loader', 'css-loader', postcss_rule, 'less-loader']
   },
   {
     test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
@@ -60,14 +58,15 @@ const rules = [
   }
 ];
 
-
 const webpackConfig = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
 
   entry: [
-    `webpack-dev-server/client?http://${env.hot_server_host}:${env.hot_server_port}`,
+    `webpack-dev-server/client?http://${env.hot_server_host}:${
+      env.hot_server_port
+    }`,
     'webpack/hot/dev-server',
     './src/client.js'
   ],
@@ -104,7 +103,7 @@ const webpackConfig = {
       'process.env': {
         NODE_ENV: JSON.stringify('development')
       },
-      'SASUKEKUN_CONFIG': JSON.stringify(_config.SASUKEKUN_CONFIG)
+      SASUKEKUN_CONFIG: JSON.stringify(_config.SASUKEKUN_CONFIG)
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -117,6 +116,6 @@ const server = new webpackDevServer(compiler, {
   hot: true,
   contentBase: path.join(__dirname, '../public/'),
   historyApiFallback: true,
-  headers: { "Access-Control-Allow-Origin": "*" }
+  headers: { 'Access-Control-Allow-Origin': '*' }
 });
 server.listen(env.hot_server_port);

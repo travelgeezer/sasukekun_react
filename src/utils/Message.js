@@ -8,7 +8,7 @@ methods.forEach(method => {
       console.log(error);
     } else {
       const content = typeof error === 'object' ? error.message : error;
-      console.log(duration)
+      console.log(duration);
     }
   };
 });

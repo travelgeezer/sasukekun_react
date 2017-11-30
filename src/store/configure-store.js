@@ -6,7 +6,6 @@ import rootReduces from '../reduces';
 
 const middlewares = [];
 
-
 const enhancers = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
@@ -22,7 +21,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
-
 
 export default function configureStore(initialStore) {
   const store = createStoreWithMiddleware(rootReduces, initialStore, enhancers);

@@ -5,7 +5,7 @@ export const types = {
 
   GET_BLOG_LIST: 'GET_BLOG_LIST',
   GET_BLOG_LIST_SUCCESS: 'GET_BLOG_LIST_SUCCESS',
-  GET_BLOG_LIST_FAIL: 'GET_BLOG_LIST_FAIL',
+  GET_BLOG_LIST_FAIL: 'GET_BLOG_LIST_FAIL'
 };
 
 export function createBlog(payload) {
