@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './footer.less';
+import './style.less';
 
 class Footer extends Component {
   constructor(props) {
