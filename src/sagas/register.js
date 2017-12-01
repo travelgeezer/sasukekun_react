@@ -6,7 +6,7 @@ import Message from '../utils/Message';
 function* register(payload = {}) {
   const { data } = payload;
   try {
-    const user = yield call(new Request().post, '/user/', {
+    const user = yield call(new Api().post, '/v1/user/', {
       formJson: true,
       data
     });
