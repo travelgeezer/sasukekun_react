@@ -7,6 +7,7 @@ import Home from '../Home';
 import CreateBlog from '../Blog/createBlog';
 import { FileUpload } from '../upload';
 import User from '../User';
+import Register from '../Register';
 import { Toolbar, Footer } from '../../components';
 import './layout.less';
 
@@ -31,6 +32,7 @@ class Layout extends Component {
             <Route path="/blog/create" component={CreateBlog} />
             <Route path="/upload" component={FileUpload} />
             <Route path="/user" component={User} />
+            <Route path="/register" component={Register} />
           </Switch>
         </div>
         <Footer />
