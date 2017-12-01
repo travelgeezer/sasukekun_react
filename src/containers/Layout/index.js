@@ -6,6 +6,7 @@ import * as homeActions from '../../actions/home';
 import Home from '../Home';
 import CreateBlog from '../Blog/createBlog';
 import { FileUpload } from '../upload';
+import User from '../User';
 import { Toolbar, Footer } from '../../components';
 import './layout.less';
 
@@ -29,6 +30,7 @@ class Layout extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/blog/create" component={CreateBlog} />
             <Route path="/upload" component={FileUpload} />
+            <Route path="/user" component={User} />
           </Switch>
         </div>
         <Footer />

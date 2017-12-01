@@ -19,7 +19,7 @@ export default class ToolbarExamplesSimple extends React.Component {
             <Link to="/">
               <li>home</li>
             </Link>
-            <Link to="/blog">
+            <Link to="/blog/create">
               <li>blog</li>
             </Link>
             <Link to="/upload">
